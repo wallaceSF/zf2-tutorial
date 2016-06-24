@@ -16,16 +16,12 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-
-        //./vendor/bin/phpunit --colors --debug /vhosts/local.professor.unisuam.edu.br/module/Appli cation/test
         return new ViewModel();
     }
 
 
-    public function outroAction()
+    public function cadastrarAction()
     {
-
-        //./vendor/bin/phpunit --colors --debug /vhosts/local.professor.unisuam.edu.br/module/Appli cation/test
         return new ViewModel();
     }
     

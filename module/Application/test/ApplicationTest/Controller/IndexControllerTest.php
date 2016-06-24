@@ -50,18 +50,12 @@ class IndexControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testOutroActionCanBeAccessed()
     {
-        $this->routeMatch->setParam('action', 'outro');
+        $this->routeMatch->setParam('action', 'cadastrar');
 
-        $result   = $this->controller->dispatch($this->request);
-
-     //   var_dump($result);
-
+        $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
 
-      //  var_dump($response);
-
-        $this->assertGreaterThan(20, 21,'olha aqui' );
-
-       // $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertGreaterThan(20, 20, 'Não pode ser igual ou menor' );
     }
 }
