@@ -48,7 +48,7 @@ class IndexControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function testOutroActionCanBeAccessed()
+    public function testCadastrarActionCanBeAccessed()
     {
         $this->routeMatch->setParam('action', 'cadastrar');
 
