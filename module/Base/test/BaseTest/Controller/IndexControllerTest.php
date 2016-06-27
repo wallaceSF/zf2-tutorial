@@ -1,10 +1,10 @@
 <?php
 
-namespace ApplicationTest\Controller;
+namespace BaseTest\Controller;
 
-use ApplicationTest\Bootstrap;
+use BaseTest\Bootstrap;
 use Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter;
-use Application\Controller\IndexController;
+use Base\Controller\IndexController;
 use Zend\Http\Request;
 use Zend\Http\Response;
 use Zend\Mvc\MvcEvent;
@@ -22,7 +22,6 @@ class IndexControllerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
 
-        // /vhosts/zf2-tutorial/vendor/bin/phpunit --colors --debug
         $serviceManager = Bootstrap::getServiceManager();
         $this->controller = new IndexController();
         $this->request    = new Request();
@@ -50,12 +49,12 @@ class IndexControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testCadastrarActionCanBeAccessed()
     {
-        $this->routeMatch->setParam('action', 'cadastrar');
+        $this->routeMatch->setParam('action', 'read');
 
         $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertGreaterThan(20, 22, 'Não pode ser igual ou menor' );
+        $this->assertGreaterThan(20, 25, 'Não pode ser igual ou menor!!!' );
     }
 }
