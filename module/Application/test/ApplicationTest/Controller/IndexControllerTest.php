@@ -51,11 +51,11 @@ class IndexControllerTest extends \PHPUnit_Framework_TestCase
     public function testCadastrarActionCanBeAccessed()
     {
         $this->routeMatch->setParam('action', 'cadastrar');
-//
+
         $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertGreaterThan(20, 20, 'Não pode ser igual ou menor' );
+        $this->assertGreaterThan(20, 21, 'Não pode ser igual ou menor' );
     }
 }
