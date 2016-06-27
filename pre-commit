@@ -28,7 +28,7 @@ foreach ($diretoriosExplode as $keyNivelUm => $parte) {
 }
 
 
-$comandoPhpUnit = "/vhosts/zf2-tutorial/vendor/bin/phpunit --colors --debug";
+$comandoPhpUnit = "phpunit --colors --debug";
 
 foreach ($diretorioLimpo as $key => $value) {
 	exec(" cd ".$value." && " .$comandoPhpUnit, $retornosPHPUnit, $retornoCodigo);
