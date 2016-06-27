@@ -1,0 +1,49 @@
+#!/usr/local/zend/bin/php
+<?php
+
+//$comando = "grep -R -i -o '<phpunit bootstrap=\"Bootstrap.php\">' /vhosts/zf2-tutorial/module";
+$comando = "grep -R -i -o '<phpunit bootstrap=\"Bootstrap.php\">' *";
+
+exec($comando, $retornoComandosArray);
+
+$diretoriosExplode = [];
+$diretorioLimpo    = [];
+$diretorio 		   = '';
+foreach ($retornoComandosArray as $keyRetornoComandosArray => $comando){
+	$diretoriosExplode[$keyRetornoComandosArray] = explode("/", $comando);
+}
+
+
+foreach ($diretoriosExplode as $keyNivelUm => $parte) {
+	foreach ($parte as $keyNivelDois => $value) {
+		if($value == "test"){
+			break;
+		}
+
+		$diretorio .= $value."/";
+	}
+
+	$diretorioLimpo[$keyNivelUm] = $diretorio."test";
+	$diretorio = '';	
+}
+
+
+$comandoPhpUnit = "/vhosts/zf2-tutorial/vendor/bin/phpunit --colors --debug";
+
+foreach ($diretorioLimpo as $key => $value) {
+	exec(" cd ".$value." && " .$comandoPhpUnit, $retornosPHPUnit, $retornoCodigo);
+	echo $value."\n\n";
+}
+
+foreach ($retornosPHPUnit as $keyPHPUnitNivelUm => $retornoPHPUnit) {
+	if($retornoPHPUnit != '' || $retornoPHPUnit != '.') {
+		echo $retornoPHPUnit."\n";
+	}
+
+}
+
+if($retornoCodigo !== 0){
+	exit(1);
+}
+
+exit(0);

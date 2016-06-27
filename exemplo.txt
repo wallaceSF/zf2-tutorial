@@ -1,1 +1,0 @@
-/zf2-tutorial/module/Application/test (master) $ /vhosts/zf2-tutorial/vendor/bin/phpunit --colors --debug

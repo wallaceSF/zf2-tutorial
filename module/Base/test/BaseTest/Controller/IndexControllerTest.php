@@ -55,6 +55,6 @@ class IndexControllerTest extends \PHPUnit_Framework_TestCase
         $response = $this->controller->getResponse();
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertGreaterThan(20, 25, 'Não pode ser igual ou menor!!!' );
+        $this->assertGreaterThan(20, 26, 'Não pode ser igual ou menor!!!' );
     }
 }
