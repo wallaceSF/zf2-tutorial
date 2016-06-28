@@ -28,19 +28,37 @@ foreach ($diretoriosExplode as $keyNivelUm => $parte) {
 }
 
 
-$comandoPhpUnit = "phpunit --colors --debug";
+$comandoPhpUnit = "/vhosts/zf2-tutorial/vendor/bin/phpunit --colors --debug";
 
+echo "Modulos que executaram os testes:\n";
 foreach ($diretorioLimpo as $key => $value) {
 	exec(" cd ".$value." && " .$comandoPhpUnit, $retornosPHPUnit, $retornoCodigo);
-	echo $value."\n\n";
+	echo "\033[0;35m{$value}\033[37m\r\n";
 }
 
+
+echo "\n";
 foreach ($retornosPHPUnit as $keyPHPUnitNivelUm => $retornoPHPUnit) {
-	if($retornoPHPUnit != '' || $retornoPHPUnit != '.') {
-		echo $retornoPHPUnit."\n";
+	
+	if($retornoPHPUnit == '' || $retornoPHPUnit == '.') {	
+		continue;
+	}
+
+	if(strpos($retornoPHPUnit, 'FAILURES') !== false) {	
+		echo "\033[31m{$retornoPHPUnit}\033[37m\r\n";	
+	}
+
+	else if (strpos($retornoPHPUnit, 'OK (') !== false) {
+		echo "\033[32m{$retornoPHPUnit}\033[37m\r\n";
+		echo "\n";
+	}
+
+	else {
+		echo $retornoPHPUnit."\n";	
 	}
 
 }
+echo "\n";
 
 if($retornoCodigo !== 0){
 	exit(1);
